@@ -123,21 +123,6 @@ deb-src http://us.archive.ubuntu.com/ubuntu/ hirsute-updates main restricted uni
 
 clean http://us.archive.ubuntu.com/ubuntu
 
-###### Debian Main Repos
-deb http://deb.debian.org/debian/ buster main contrib non-free
-deb-src http://deb.debian.org/debian/ buster main contrib non-free
-
-deb http://deb.debian.org/debian/ buster/updates main contrib non-free
-deb-src http://deb.debian.org/debian/ buster/updates main contrib non-free
-
-deb http://deb.debian.org/debian-security buster-updates main
-deb-src http://deb.debian.org/debian-security buster-updates main
-
-deb http://ftp.debian.org/debian buster-backports main
-deb-src http://ftp.debian.org/debian buster-backports main
-
-clean http://ftp.us.debian.org/debian
-
 #PopOS Sources
 deb http://apt.pop-os.org/proprietary $(lsb_release -cs) main
 " >> /etc/apt/mirror.list
