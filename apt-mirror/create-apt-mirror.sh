@@ -110,6 +110,17 @@ deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted universe 
 deb-src http://us.archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse 
 deb-src http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse 
 
+###### Ubuntu Main Repos (Hirsute - 21.04 LTS)
+deb http://us.archive.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse 
+deb-src http://us.archive.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse 
+
+###### Ubuntu Update Repos (Hirsute - 21.04 LTS)
+deb http://us.archive.ubuntu.com/ubuntu/ hirsute-security main restricted universe multiverse 
+deb http://us.archive.ubuntu.com/ubuntu/ hirsute-updates main restricted universe multiverse 
+deb-src http://us.archive.ubuntu.com/ubuntu/ hirsute-security main restricted universe multiverse 
+deb-src http://us.archive.ubuntu.com/ubuntu/ hirsute-updates main restricted universe multiverse 
+
+
 clean http://us.archive.ubuntu.com/ubuntu
 
 ###### Debian Main Repos
