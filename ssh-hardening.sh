@@ -17,8 +17,8 @@ ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >> /dev/null
 ### Regenerates moduli prime numbers used for DH key exchange
 echo "### Regenerating Moduli Prime Numbers, please wait... ###"
 ### There is no way to disable output for this command, I've tried
-ssh-keygen -G moduli-2048.candidates -b 2048
-ssh-keygen -T moduli-2048 -f moduli-2048.candidates
+ssh-keygen -M generate -O bits=2048 moduli-2048.candidates
+ssh-keygen -M screen -f moduli-2048.candidates moduli-2048
 
 cp moduli-2048 /etc/ssh/moduli
 rm moduli-2048
