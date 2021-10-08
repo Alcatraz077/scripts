@@ -1,3 +1,4 @@
+#/bin/bash
 echo "### Adding SSH Keys ###"
 ### Creates authorized_keys file if it doesn't already exist
 mkdir -p ~/.ssh
@@ -17,8 +18,10 @@ ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >> /dev/null
 ### Regenerates moduli prime numbers used for DH key exchange
 echo "### Regenerating Moduli Prime Numbers, please wait... ###"
 ### There is no way to disable output for this command, I've tried
-ssh-keygen -M generate -O bits=2048 moduli-2048.candidates
-ssh-keygen -M screen -f moduli-2048.candidates moduli-2048
+#ssh-keygen -M generate -O bits=2048 moduli-2048.candidates
+#ssh-keygen -M screen -f moduli-2048.candidates moduli-2048
+ssh-keygen -G moduli-2048.candidates -b 2048
+ssh-keygen -T moduli-2048 -f moduli-2048.candidates
 
 cp moduli-2048 /etc/ssh/moduli
 rm moduli-2048
@@ -43,3 +46,7 @@ HostKey /etc/ssh/ssh_host_rsa_key
 KexAlgorithms curve25519-sha256@libssh.org
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com" >> /etc/ssh/sshd_config
+
+
+echo "### Restarting SSH service ###"
+service ssh restart
