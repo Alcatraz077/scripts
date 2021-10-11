@@ -8,6 +8,10 @@ apt update -y >> /dev/null
 ### Installs prequisites, but also installs some other useful packages
 apt-get install apt-transport-https ca-certificates curl gnupg lsb-release python3 lvm2 ntp systemd htop tmux sysstat python3-pip -y >> /dev/null
 
+### Installs auto updater and configures to auto install security updates
+apt-get install unattended-upgrades apt-listchanges -y >> /dev/null
+dpkg-reconfigure -plow unattended-upgrades
+
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg >> /dev/null
 
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -35,7 +39,7 @@ mkdir -p ~/.ssh
 echo -n > ~/.ssh/authorized_keys
 
 ### Adds my public SSH Key
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINd46vcJFhHitAx5FaEi66E1t2tfgZx8/XMdb14R/m7i alcatraz@pop-box" >> ~/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINd46vcJFhHitAx5FaEi66E1t2tfgZx8/XMdb14R/m7i alcatraz@endeavour" >> ~/.ssh/authorized_keys
 
 echo "### Starting SSH Hardening ###"
 ### Removes and regenerates ssh host keys
@@ -48,8 +52,8 @@ ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >> /dev/null
 ### Regenerates moduli prime numbers used for DH key exchange
 echo "### Regenerating Moduli Prime Numbers, please wait... ###"
 ### There is no way to disable output for this command, I've tried
-ssh-keygen -M generate -O bits=2048 moduli-2048.candidates
-ssh-keygen -M screen -f moduli-2048.candidates moduli-2048
+ssh-keygen -G moduli-2048.candidates -b 2048
+ssh-keygen -T moduli-2048 -f moduli-2048.candidates
 
 cp moduli-2048 /etc/ssh/moduli
 rm moduli-2048
