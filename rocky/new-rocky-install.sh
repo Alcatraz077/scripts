@@ -1,5 +1,7 @@
 #/bin/bash
 
+yum update -y
+
 echo "### Updating Timezone ###"
 timedatectl set-timezone America/Chicago
 
