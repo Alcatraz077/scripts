@@ -2,11 +2,8 @@
 
 yum update -y
 
-echo "### Updating Timezone ###"
-timedatectl set-timezone America/Chicago
-
 echo "### Installing Packages ###"
-yum install nano wget curl -y
+yum install nano wget curl tmux -y
 
 echo "### Installing Docker ###"
 yum install -y yum-utils
@@ -68,11 +65,3 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@op
 
 echo "### Restarting SSH service ###"
 service ssh restart
-
-echo "### Installing ZFS ###"
-dnf install https://zfsonlinux.org/epel/zfs-release.el8_5.noarch.rpm
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
-
-dnf install -y epel-release
-dnf install -y kernel-devel
-dnf install -y zfs
